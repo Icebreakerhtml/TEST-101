@@ -1,2 +1,356 @@
-# TEST-101
-NEW REPO
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lou Santos | Electronics Engineer</title>
+
+  <!-- ✅ Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #00b4ff;
+      --primary-dark: #0066cc;
+      --bg: #f4f7fb;
+      --text: #222;
+      --card: #fff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    body.dark {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card: #1e293b;
+      --shadow: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* ===== Glowing Circuit Lines ===== */
+    .circuit-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at center, rgba(0,180,255,0.05), transparent 60%);
+      overflow: hidden;
+    }
+
+    .line {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, rgba(0,255,255,0.6), transparent);
+      height: 2px;
+      width: 200px;
+      opacity: 0.3;
+      animation: moveLine 6s linear infinite;
+    }
+
+    .line.vertical {
+      width: 2px;
+      height: 200px;
+      background: linear-gradient(180deg, transparent, rgba(0,255,255,0.6), transparent);
+      animation: moveLineV 7s linear infinite;
+    }
+
+    @keyframes moveLine {
+      0% { transform: translateX(-100vw); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateX(100vw); opacity: 0; }
+    }
+    @keyframes moveLineV {
+      0% { transform: translateY(-100vh); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: linear-gradient(270deg, #007bff, #00c6ff, #0056b3);
+      background-size: 600% 600%;
+      animation: gradientMove 12s ease infinite;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 80px;
+      position: relative;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .header-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .toggle-btn, .download-btn {
+      background: #fff;
+      color: var(--primary);
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+    .toggle-btn:hover, .download-btn:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid #fff;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    header p.typing {
+      font-size: 1.1em;
+      font-weight: 500;
+      opacity: 0.95;
+      min-height: 1.5em;
+    }
+
+    /* ===== Nav ===== */
+    nav {
+      background: var(--card);
+      box-shadow: 0 2px 5px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    nav ul li { margin: 10px 20px; }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    nav ul li a:hover { color: var(--primary-dark); }
+
+    /* ===== Sections ===== */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 30px;
+    }
+    .about, .skills, .projects, .education, .job-experience, .contact {
+      background: var(--card);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px var(--shadow);
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    .skill {
+      background: #e9ecef;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: transform 0.3s;
+    }
+    .skill:hover { transform: scale(1.05); }
+    body.dark .skill { background: #2a2a2a; color: #ddd; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2em; }
+      nav ul { flex-direction: column; }
+      .header-buttons { flex-direction: column; top: 10px; right: 10px; }
+      .toggle-btn, .download-btn { padding: 6px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Lines -->
+  <div class="circuit-bg" id="circuit"></div>
+
+  <header>
+    <div class="header-buttons">
+      <a href="LouSantosCV.pdf" download class="download-btn">📄 Download CV</a>
+      <button class="toggle-btn" id="modeToggle">🌙 Dark Mode</button>
+    </div>
+
+    <div class="profile-photo">
+      <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500" alt="Lou Santos" />
+    </div>
+
+    <h1>Lou Santos</h1>
+    <p class="typing"></p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#job-experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="about" class="about">
+    <h2>👨‍💻 About Me</h2>
+    <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="250" alt="Engineer at work" />
+    <p>
+      I’m an Electronics Engineer passionate about embedded systems, automation, and circuit design.
+      I love turning innovative ideas into functional electronic solutions. 💡
+    </p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>⚙️ Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill"><i class="fa-solid fa-microchip"></i> Arduino / ESP32</div>
+      <div class="skill"><i class="fa-solid fa-code"></i> C / C++</div>
+      <div class="skill"><i class="fa-solid fa-wave-square"></i> MATLAB</div>
+      <div class="skill"><i class="fa-solid fa-diagram-project"></i> Proteus / Multisim</div>
+      <div class="skill"><i class="fa-solid fa-cubes"></i> Altium Designer</div>
+      <div class="skill"><i class="fa-solid fa-drafting-compass"></i> AutoCAD Electrical</div>
+      <div class="skill"><i class="fa-solid fa-screwdriver-wrench"></i> Soldering / Testing</div>
+      <div class="skill"><i class="fa-solid fa-satellite-dish"></i> IoT Systems</div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>🧠 Projects</h2>
+    <p><strong><i class="fa-solid fa-house-signal"></i> Smart Home Automation</strong> — Wi-Fi based home automation system using ESP8266 and Blynk app.</p>
+    <p><strong><i class="fa-solid fa-robot"></i> Line Follower Robot</strong> — Arduino-powered robot designed for line tracking with IR sensors.</p>
+  </section>
+
+  <section id="education" class="education">
+    <h2>🎓 Education</h2>
+    <p><strong>Bachelor of Science in Electronics Engineering</strong><br>XYZ University, 2020–2025</p>
+  </section>
+
+  <section id="job-experience" class="job-experience">
+    <h2>💼 Job Experience</h2>
+    <p><strong>RJ Broadcasting</strong><br>Broadcast Technician, 2025–Present</p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>📬 Contact</h2>
+    <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:lousantos@email.com">lousantos@email.com</a></p>
+    <p><i class="fa-brands fa-linkedin"></i> LinkedIn: <a href="https://linkedin.com/in/lousantos" target="_blank">linkedin.com/in/lousantos</a></p>
+    <p><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/lousantos" target="_blank">github.com/lousantos</a></p>
+  </section>
+
+  <footer><p>© 2025 Lou Santos | Electronics Engineer</p></footer>
+
+  <script>
+    // Generate animated circuit lines
+    const circuit = document.getElementById("circuit");
+    for (let i = 0; i < 12; i++) {
+      const line = document.createElement("div");
+      line.className = i % 2 === 0 ? "line" : "line vertical";
+      line.style.top = `${Math.random() * 100}vh`;
+      line.style.left = `${Math.random() * 100}vw`;
+      line.style.animationDelay = `${Math.random() * 5}s`;
+      circuit.appendChild(line);
+    }
+
+    // Smooth scroll
+    document.querySelectorAll("nav a").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    // Dark mode toggle
+    const toggleBtn = document.getElementById("modeToggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+
+    // Typing effect
+    const textElement = document.querySelector(".typing");
+    const phrases = ["⚡ Electronics Engineer", "🤖 Embedded Systems Developer", "💡 PCB Designer"];
+    let i = 0, j = 0, deleting = false;
+    function type() {
+      const current = phrases[i];
+      textElement.textContent = current.substring(0, j);
+      if (!deleting && j < current.length) { j++; setTimeout(type, 100); }
+      else if (deleting && j > 0) { j--; setTimeout(type, 60); }
+      else { deleting = !deleting; if (!deleting) i = (i + 1) % phrases.length; setTimeout(type, 1000); }
+    }
+    type();
+
+    // Fade-in sections
+    const sections = document.querySelectorAll("section");
+    const revealSections = () => {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) section.classList.add("visible");
+      });
+    };
+    window.addEventListener("scroll", revealSections);
+    window.addEventListener("load", revealSections);
+  </script>
+</body>
+</html>
