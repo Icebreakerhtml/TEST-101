@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lou Santos | Electronics Engineer</title>
 
-  <!-- ✅ Font Awesome -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
   <style>
@@ -17,6 +17,7 @@
       --card: #fff;
       --shadow: rgba(0, 0, 0, 0.1);
     }
+
     body.dark {
       --bg: #0f172a;
       --text: #e2e8f0;
@@ -24,34 +25,36 @@
       --shadow: rgba(255, 255, 255, 0.05);
     }
 
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
       transition: background 0.3s, color 0.3s;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
       line-height: 1.6;
+      overflow-x: hidden;
       position: relative;
     }
 
-    /* ===== Glowing Circuit Lines ===== */
+    /* ===== Background Glowing Circuit Lines ===== */
     .circuit-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       z-index: -1;
       background: radial-gradient(circle at center, rgba(0,180,255,0.05), transparent 60%);
       overflow: hidden;
     }
 
-    .line {
+    .circuit-line {
       position: absolute;
       background: linear-gradient(90deg, transparent, rgba(0,255,255,0.6), transparent);
       height: 2px;
@@ -60,7 +63,7 @@
       animation: moveLine 6s linear infinite;
     }
 
-    .line.vertical {
+    .circuit-line.vertical {
       width: 2px;
       height: 200px;
       background: linear-gradient(180deg, transparent, rgba(0,255,255,0.6), transparent);
@@ -102,6 +105,7 @@
       right: 20px;
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .toggle-btn, .download-btn {
       background: #fff;
@@ -111,13 +115,14 @@
       padding: 8px 16px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.3s, transform 0.2s;
       text-decoration: none;
       font-size: 0.9em;
     }
     .toggle-btn:hover, .download-btn:hover {
       background: var(--primary-dark);
       color: #fff;
+      transform: scale(1.05);
     }
 
     .profile-photo {
@@ -136,8 +141,12 @@
     }
 
     header h1 {
-      font-size: 2.5em;
+      font-size: 2.8em;
       margin-bottom: 10px;
+      background: linear-gradient(90deg, #00b4ff, #0066cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
     header p.typing {
       font-size: 1.1em;
@@ -167,10 +176,11 @@
       font-weight: 600;
       transition: 0.3s;
     }
+    nav ul li a.active,
     nav ul li a:hover { color: var(--primary-dark); }
 
     /* ===== Sections ===== */
-    section {
+    main section {
       padding: 60px 20px;
       max-width: 1000px;
       margin: auto;
@@ -178,7 +188,7 @@
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    section.visible { opacity: 1; transform: translateY(0); }
+    main section.visible { opacity: 1; transform: translateY(0); }
 
     h2 {
       text-align: center;
@@ -204,11 +214,17 @@
       padding: 15px;
       border-radius: 10px;
       font-weight: 600;
-      transition: transform 0.3s;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+      cursor: default;
     }
-    .skill:hover { transform: scale(1.05); }
+    .skill:hover {
+      transform: scale(1.05);
+      background: var(--primary);
+      color: #fff;
+    }
     body.dark .skill { background: #2a2a2a; color: #ddd; }
 
+    /* ===== Footer ===== */
     footer {
       text-align: center;
       padding: 20px;
@@ -228,21 +244,21 @@
   <!-- Background Lines -->
   <div class="circuit-bg" id="circuit"></div>
 
-  <header>
+  <header aria-label="Profile Header">
     <div class="header-buttons">
       <a href="LouSantosCV.pdf" download class="download-btn">📄 Download CV</a>
       <button class="toggle-btn" id="modeToggle">🌙 Dark Mode</button>
     </div>
 
     <div class="profile-photo">
-      <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500" alt="Lou Santos" />
+      <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500" alt="Portrait of Lou Santos, Electronics Engineer" />
     </div>
 
     <h1>Lou Santos</h1>
     <p class="typing"></p>
   </header>
 
-  <nav>
+  <nav aria-label="Main Navigation">
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -253,82 +269,79 @@
     </ul>
   </nav>
 
-  <section id="about" class="about">
-    <h2>👨‍💻 About Me</h2>
-    <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="250" alt="Engineer at work" />
-    <p>
-      I’m an Electronics Engineer passionate about embedded systems, automation, and circuit design.
-      I love turning innovative ideas into functional electronic solutions. 💡
-    </p>
-  </section>
+  <main>
+    <section id="about" class="about">
+      <h2>👨‍💻 About Me</h2>
+      <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="250" alt="Engineer working on electronics" />
+      <p>I’m an Electronics Engineer passionate about embedded systems, automation, and circuit design. I love turning innovative ideas into functional electronic solutions. 💡</p>
+    </section>
 
-  <section id="skills" class="skills">
-    <h2>⚙️ Technical Skills</h2>
-    <div class="skills-grid">
-      <div class="skill"><i class="fa-solid fa-microchip"></i> Arduino / ESP32</div>
-      <div class="skill"><i class="fa-solid fa-code"></i> C / C++</div>
-      <div class="skill"><i class="fa-solid fa-wave-square"></i> MATLAB</div>
-      <div class="skill"><i class="fa-solid fa-diagram-project"></i> Proteus / Multisim</div>
-      <div class="skill"><i class="fa-solid fa-cubes"></i> Altium Designer</div>
-      <div class="skill"><i class="fa-solid fa-drafting-compass"></i> AutoCAD Electrical</div>
-      <div class="skill"><i class="fa-solid fa-screwdriver-wrench"></i> Soldering / Testing</div>
-      <div class="skill"><i class="fa-solid fa-satellite-dish"></i> IoT Systems</div>
-    </div>
-  </section>
+    <section id="skills" class="skills">
+      <h2>⚙️ Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill"><i class="fa-solid fa-microchip"></i> Arduino / ESP32</div>
+        <div class="skill"><i class="fa-solid fa-code"></i> C / C++</div>
+        <div class="skill"><i class="fa-solid fa-wave-square"></i> MATLAB</div>
+        <div class="skill"><i class="fa-solid fa-diagram-project"></i> Proteus / Multisim</div>
+        <div class="skill"><i class="fa-solid fa-cubes"></i> Altium Designer</div>
+        <div class="skill"><i class="fa-solid fa-drafting-compass"></i> AutoCAD Electrical</div>
+        <div class="skill"><i class="fa-solid fa-screwdriver-wrench"></i> Soldering / Testing</div>
+        <div class="skill"><i class="fa-solid fa-satellite-dish"></i> IoT Systems</div>
+      </div>
+    </section>
 
-  <section id="projects" class="projects">
-    <h2>🧠 Projects</h2>
-    <p><strong><i class="fa-solid fa-house-signal"></i> Smart Home Automation</strong> — Wi-Fi based home automation system using ESP8266 and Blynk app.</p>
-    <p><strong><i class="fa-solid fa-robot"></i> Line Follower Robot</strong> — Arduino-powered robot designed for line tracking with IR sensors.</p>
-  </section>
+    <section id="projects" class="projects">
+      <h2>🧠 Projects</h2>
+      <div class="project-card">
+        <p><strong><i class="fa-solid fa-house-signal"></i> Smart Home Automation</strong> — Wi-Fi based home automation system using ESP8266 and Blynk app.</p>
+      </div>
+      <div class="project-card">
+        <p><strong><i class="fa-solid fa-robot"></i> Line Follower Robot</strong> — Arduino-powered robot designed for line tracking with IR sensors.</p>
+      </div>
+    </section>
 
-  <section id="education" class="education">
-    <h2>🎓 Education</h2>
-    <p><strong>Bachelor of Science in Electronics Engineering</strong><br>XYZ University, 2020–2025</p>
-  </section>
+    <section id="education" class="education">
+      <h2>🎓 Education</h2>
+      <p><strong>Bachelor of Science in Electronics Engineering</strong><br>XYZ University, 2020–2025</p>
+    </section>
 
-  <section id="job-experience" class="job-experience">
-    <h2>💼 Job Experience</h2>
-    <p><strong>RJ Broadcasting</strong><br>Broadcast Technician, 2025–Present</p>
-  </section>
+    <section id="job-experience" class="job-experience">
+      <h2>💼 Job Experience</h2>
+      <p><strong>RJ Broadcasting</strong><br>Broadcast Technician, 2025–Present</p>
+    </section>
 
-  <section id="contact" class="contact">
-    <h2>📬 Contact</h2>
-    <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:lousantos@email.com">lousantos@email.com</a></p>
-    <p><i class="fa-brands fa-linkedin"></i> LinkedIn: <a href="https://linkedin.com/in/lousantos" target="_blank">linkedin.com/in/lousantos</a></p>
-    <p><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/lousantos" target="_blank">github.com/lousantos</a></p>
-  </section>
+    <section id="contact" class="contact">
+      <h2>📬 Contact</h2>
+      <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:lousantos@email.com">lousantos@email.com</a></p>
+      <p><i class="fa-brands fa-linkedin"></i> LinkedIn: <a href="https://linkedin.com/in/lousantos" target="_blank">linkedin.com/in/lousantos</a></p>
+      <p><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/lousantos" target="_blank">github.com/lousantos</a></p>
+    </section>
+  </main>
 
-  <footer><p>© 2025 Lou Santos | Electronics Engineer</p></footer>
+  <footer>
+    <p>© 2025 Lou Santos | Electronics Engineer</p>
+  </footer>
 
   <script>
-    // Generate animated circuit lines
+    /* ===== Generate Circuit Lines ===== */
     const circuit = document.getElementById("circuit");
     for (let i = 0; i < 12; i++) {
       const line = document.createElement("div");
-      line.className = i % 2 === 0 ? "line" : "line vertical";
+      line.className = i % 2 === 0 ? "circuit-line" : "circuit-line vertical";
       line.style.top = `${Math.random() * 100}vh`;
       line.style.left = `${Math.random() * 100}vw`;
       line.style.animationDelay = `${Math.random() * 5}s`;
       circuit.appendChild(line);
     }
 
-    // Smooth scroll
-    document.querySelectorAll("nav a").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        document.querySelector(link.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
-      });
-    });
-
-    // Dark mode toggle
+    /* ===== Dark Mode Toggle ===== */
     const toggleBtn = document.getElementById("modeToggle");
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark");
       toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
     });
 
-    // Typing effect
+    /* ===== Typing Effect ===== */
     const textElement = document.querySelector(".typing");
     const phrases = ["⚡ Electronics Engineer", "🤖 Embedded Systems Developer", "💡 PCB Designer"];
     let i = 0, j = 0, deleting = false;
@@ -341,16 +354,26 @@
     }
     type();
 
-    // Fade-in sections
-    const sections = document.querySelectorAll("section");
-    const revealSections = () => {
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) section.classList.add("visible");
+    /* ===== Fade-in Sections with Intersection Observer ===== */
+    const sections = document.querySelectorAll("main section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    };
-    window.addEventListener("scroll", revealSections);
-    window.addEventListener("load", revealSections);
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    /* ===== Active Nav Link Highlight ===== */
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let scrollPos = window.scrollY + 200;
+      sections.forEach(section => {
+        if(scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight){
+          navLinks.forEach(link => link.classList.remove('active'));
+          document.querySelector(`nav a[href="#${section.id}"]`).classList.add('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>
