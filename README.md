@@ -313,7 +313,48 @@
 <!------>
     <section id="work-history" class="work-history">
       <h2>💼 Work History</h2>
-      <p><strong>RJ Broadcasting</strong><br>Broadcast Technician, 2025–Present</p>
+      <p><strong>QUALITY INSPECTOR/QUALITY ASSURNCE</strong>
+      <br>JANUARY 19, 2024 - JULY 18, 2024
+      <br>AGENCY : ASIA PEOPLE WORK ASSIGN PROJECT FLI-CMG (FEDERAL LAND INC. - CONSTRCUTION MANAGEMENT GROUP)
+      <br>DUTIES:<br>
+ Prepared daily inspection and progress reports, maintaining accurate records for management review.<br>
+ Conducted thorough inspections of residential units and
+common areas, ensuring compliance with quality, safety, and client standards. <br>
+ Managed the handover process for residential units
+verifying inspection and completing required
+documentation. <br>
+ Coordinated daily with project managers and officers to
+address issues, streamline inspections, and support timely
+project delivery. <br>
+ Monitored project milestone, ensuring inspections and
+handovers met established deadlines. <br>
+ Identified and resolved potential delays, collaborating with
+stakeholders to maintain project schedules. </p>
+      <br>
+      <p><strong>Broadcast Technician</strong>
+      <br>MARCH 24, 2025 - PRESENT
+      <br>COMPANY: RAJAH BROADCASTING NETWORK
+      <br>DUTIES:<br>
+ TV, AM, and FM Technician and
+operator.<br>
+ Ability to work in live and recorded production
+Script reading and content preparation.<br>
+ Assisted with live broadcasts and studio productions
+Troubleshot signal, audio, and video issues under time
+constraints.<br>
+ Monitored broadcast feeds to ensure quality and
+compliance.<br>
+ Maintained cables, connectors, and equipment inventory
+Followed safety procedures and broadcast standards. </p>
+      
+
+
+      
+      
+      
+      
+      
+      
     </section>
 
     <section id="contact" class="contact">
