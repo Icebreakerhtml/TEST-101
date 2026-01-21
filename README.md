@@ -301,9 +301,16 @@
 
     <section id="education" class="education">
       <h2>🎓 Education</h2>
-      <p><strong>Bachelor of Science in Electronics Engineering</strong><br>XYZ University, 2020–2025</p>
-    </section>
-
+      <p><strong>Bachelor of Science in Electronics Engineering</strong>
+      	<br>Quezon City University, 2018–2023</p>
+   <p><strong>Administration Business Management (ABM)</strong>
+   		<br>Our Lady of Fatima University, 2016–2018</p>
+   <p><strong>Junior High School</strong>
+   		<br>North Fairview High School, 2012–2016</p>
+   <p><strong>Primary School</strong>
+   		<br>North Fairview Elementary School, 2006–2012</p>
+      </section>
+<!------>
     <section id="job-experience" class="job-experience">
       <h2>💼 Job Experience</h2>
       <p><strong>RJ Broadcasting</strong><br>Broadcast Technician, 2025–Present</p>
