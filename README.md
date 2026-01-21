@@ -194,7 +194,7 @@
       color: var(--primary);
       margin-bottom: 30px;
     }
-    .about, .skills, .projects, .education, .job-experience, .contact {
+    .about, .skills, .projects, .education, .work-history, .contact {
       background: var(--card);
       border-radius: 10px;
       box-shadow: 0 2px 8px var(--shadow);
@@ -263,7 +263,7 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
-      <li><a href="#job-experience">Experience</a></li>
+      <li><a href="#work-history">Work History</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -311,8 +311,8 @@
    		<br>North Fairview Elementary School, 2006–2012</p>
       </section>
 <!------>
-    <section id="job-experience" class="job-experience">
-      <h2>💼 Job Experience</h2>
+    <section id="work-history" class="work-history">
+      <h2>💼 Work History</h2>
       <p><strong>RJ Broadcasting</strong><br>Broadcast Technician, 2025–Present</p>
     </section>
 
