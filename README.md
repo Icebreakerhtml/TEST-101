@@ -250,10 +250,11 @@
     </div>
 
     <div class="profile-photo">
-      <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500" alt="Portrait of Lou Santos, Electronics Engineer" />
+      <img src="https://scontent.fmnl14-1.fna.fbcdn.net/v/t39.30808-1/434214660_728225056154193_959173463102926922_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=103&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGQMPkF6puNvovg8QebtlWazOIyFOTg59PM4jIU5ODn0zMxE2-0fFQI2TKMbzvNNcLKIIz52XmeGbhQOcAQvyxz&_nc_ohc=L9oER5a_phIQ7kNvwGQlQog&_nc_oc=AdnKKawP7vYr6vZxHTdsKcng3hYPp-_fkB6J6Nlhks2zdWxrxom18NjLm0LkDd85Xqw&_nc_zt=24&_nc_ht=scontent.fmnl14-1.fna&_nc_gid=V3yeUk1vJDVAJ5zFHLSFKA&oh=00_AfocQ0WQCR1yT2FJfbtT8obWfDCQ8MKebtqHdZFhKyulmQ&oe=697BE2E7" alt="Replaced Image">
+ alt="Portrait of June Louie D. Lleno, Electronics Engineer" />
     </div>
 
-    <h1>Lou Santos</h1>
+    <h1>June Louie D. Lleno</h1>
     <p class="typing"></p>
   </header>
 
